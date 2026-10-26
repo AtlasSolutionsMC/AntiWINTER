@@ -1,0 +1,6 @@
+name: AntiWINTER
+version: '${version}'
+
+main: dev.deluxeg4.antiwinter.main
+api-version: '1.21.11'
+load: POSTWORLD
