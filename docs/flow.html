@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>AntiWINTER — แผนภาพการทำงาน</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: system-ui, "Segoe UI", sans-serif;
+      background: Canvas;
+      color: CanvasText;
+    }
+    body { margin: 0; padding: 2rem; }
+    main { max-width: 1100px; margin: 0 auto; }
+    h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 1.5rem; }
+    .diagram { overflow-x: auto; }
+    .mermaid { min-width: 760px; }
+    @media (max-width: 600px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.25rem; }
+    }
+  </style>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "default", flowchart: { curve: "linear" } });
+  </script>
+</head>
+<body>
+  <main>
+    <h1>AntiWINTER — แผนภาพการทำงาน</h1>
+    <div class="diagram">
+      <pre class="mermaid">
+flowchart TD
+    J["ผู้เล่นเข้าเซิร์ฟเวอร์"] --> WAIT["รอ 60 ticks"]
+    J --> PACKETS["PacketEvents ตรวจ Brand และ Channel"]
+
+    PACKETS --> BRAND{"Brand คือ opsec?"}
+    BRAND -->|ใช่| VL["เพิ่ม VL<br/>สัญญาณเดิมนับครั้งเดียว"]
+    BRAND -->|ไม่ใช่| UNKNOWN{"Brand ไม่รู้จัก?"}
+    UNKNOWN -->|ใช่| REVIEW["แจ้งแอดมิน<br/>ไม่เพิ่ม VL"]
+    UNKNOWN -->|ไม่ใช่| CHANNEL{"Channel namespace คือ opsec?"}
+    CHANNEL -->|ใช่| VL
+
+    WAIT --> LOC{"มีตำแหน่งว่างสำหรับ probe?"}
+    LOC -->|ไม่มี| END["จบการสแกน"]
+    LOC -->|มี| BATCH["เลือก probe ชุดละไม่เกิน 3 keys"]
+    BATCH --> SIGN["ส่ง fake sign + key.forward<br/>เอาป้ายฝั่ง client ออกหลัง 1 tick"]
+    SIGN --> RESPONSE{"ได้รับคำตอบใน timeout?"}
+    RESPONSE -->|ไม่| TIMEOUT["แจ้งผล inconclusive<br/>ไม่เพิ่ม VL"]
+    RESPONSE -->|ได้| CONTROL{"key.forward กลับมาเป็น key ดิบ?"}
+    CONTROL -->|ใช่| PROTECTED["แจ้งแอดมินว่าอาจถูกป้องกัน"]
+    CONTROL -->|ไม่ใช่| EVAL["ประเมินตามโหมด probe"]
+    PROTECTED --> EVAL
+    EVAL --> HIT{"พบ key ที่ probe ตรวจหา?"}
+    HIT -->|ไม่| MORE{"ยังมี probe เหลือ?"}
+    HIT -->|ใช่| PASS{"เป็นรอบตรวจซ้ำ?"}
+    PASS -->|รอบแรก| CANDIDATE["เก็บเป็น candidate<br/>ตรวจซ้ำหลังจบรอบแรก"]
+    PASS -->|รอบตรวจซ้ำ| CONFIRM{"ผลเดิมตรงกัน?"}
+    CONFIRM -->|ไม่| MORE
+    CONFIRM -->|ใช่| TYPE{"เป็น probe ที่เพิ่ม VL ได้?"}
+    TYPE -->|ใช่| VL
+    TYPE -->|review-only| REVIEW
+    CANDIDATE --> MORE
+    MORE -->|มี| BATCH
+    MORE -->|หมด| ROUND{"จบรอบแรกหรือรอบตรวจซ้ำ?"}
+    ROUND -->|รอบแรก มี candidate| RECHECKSET["เปลี่ยนรายการสแกนเป็น candidate"]
+    RECHECKSET --> BATCH
+    ROUND -->|ไม่มี candidate หรือจบรอบตรวจซ้ำ| END
+
+    VL --> ALERT["แจ้งแอดมิน"]
+    ALERT --> THRESHOLD{"VL ถึง 2 จากสัญญาณต่างชนิด?"}
+    THRESHOLD -->|ยังไม่ถึง| END
+    THRESHOLD -->|ถึงแล้ว| KICK["เตะผู้เล่น"]
+    REVIEW --> END
+    TIMEOUT --> END
+    KICK --> END
+      </pre>
+    </div>
+  </main>
+</body>
+</html>

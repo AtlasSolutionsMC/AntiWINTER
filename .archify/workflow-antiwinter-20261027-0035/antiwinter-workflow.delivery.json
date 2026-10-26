@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "fda4348e-b988-432c-ab42-ec0512c17a37",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\candidate.json",
+  "output": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.html",
+  "specification": {
+    "sha256": "bc7a9904e873ab59804188c65a37fbbce7e572bbc31ebac848ef3dc8ee95a521",
+    "bytes": 5726
+  },
+  "artifact": {
+    "sha256": "a1d02a79761a5a78b002339d69c1199faf30266a3fbc03f59e0dc1bd9b671a2a",
+    "bytes": 849572
+  }
+}
