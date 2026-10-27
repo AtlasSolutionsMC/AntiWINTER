@@ -1,7 +1,7 @@
 package dev.deluxeg4.antiwinter.utils;
 
 
-import dev.deluxeg4.antiwinter.probe.MooPingDetector;
+import dev.deluxeg4.antiwinter.probe.Dot;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -10,7 +10,7 @@ public final class ProbeResponseUtil {
     private ProbeResponseUtil() {
     }
 
-    public static Component component(MooPingDetector probe) {
+    public static Component component(Dot probe) {
         return switch (probe.mode()) {
             case METEOR, TRANSLATE -> Component.translatable(probe.key()).fallback(probe.fallback());
             case KEYBIND -> Component.keybind(probe.key());
@@ -27,15 +27,15 @@ public final class ProbeResponseUtil {
         }
     }
 
-    public static Evaluation evaluate(MooPingDetector probe, String response, boolean exploitProtection) {
+    public static Evaluation evaluate(Dot probe, String response, boolean exploitProtection) {
         return evaluate(probe, response, exploitProtection, false);
     }
 
-    public static Evaluation evaluate(MooPingDetector probe, String response, boolean exploitProtection, boolean packShimVerified) {
+    public static Evaluation evaluate(Dot probe, String response, boolean exploitProtection, boolean packShimVerified) {
         if (response.isEmpty()) return Evaluation.NONE;
         String lowerResponse = response.toLowerCase(java.util.Locale.ROOT);
         String lowerKey = probe.key().toLowerCase(java.util.Locale.ROOT);
-        if (packShimVerified && probe.mode() != dev.deluxeg4.antiwinter.probe.Ping999.KEYBIND) {
+        if (packShimVerified && probe.mode() != dev.deluxeg4.antiwinter.probe.AEFft.KEYBIND) {
             if (lowerResponse.equals(probe.shim().toLowerCase(java.util.Locale.ROOT))
                     || lowerResponse.startsWith(probe.fallback().toLowerCase(java.util.Locale.ROOT))) return Evaluation.NONE;
             if (lowerResponse.equals(lowerKey)) return Evaluation.PROTECTED;

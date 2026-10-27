@@ -15,7 +15,7 @@ final class ProbeScan {
     final Location location;
     final Vector3i position;
     final boolean packShim;
-    private List<MooPingDetector> definitions = KhaoPadClient.DEFAULT;
+    private List<Dot> definitions = WinterClient67.DEFAULT;
     private final Set<String> hits = new HashSet<>();
     private final Set<String> firstPassHits = new HashSet<>();
     private Set<String> confirmedHits = Set.of();
@@ -30,10 +30,10 @@ final class ProbeScan {
         this.packShim = packShim;
     }
 
-    synchronized List<MooPingDetector> nextBatch() {
+    synchronized List<Dot> nextBatch() {
         if (offset >= definitions.size()) return List.of();
         int end = Math.min(offset + PROBES_PER_SIGN, definitions.size());
-        List<MooPingDetector> batch = List.copyOf(definitions.subList(offset, end));
+        List<Dot> batch = List.copyOf(definitions.subList(offset, end));
         offset = end;
         return batch;
     }

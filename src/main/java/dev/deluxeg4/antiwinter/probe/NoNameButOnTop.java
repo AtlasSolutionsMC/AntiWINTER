@@ -5,7 +5,7 @@ import com.github.retrooper.packetevents.protocol.player.User;
 import com.github.retrooper.packetevents.util.Vector3i;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerOpenSignEditor;
 import dev.deluxeg4.antiwinter.WinterOnTop;
-import dev.deluxeg4.antiwinter.detection.GrandmaAntiCheat;
+import dev.deluxeg4.antiwinter.detection.Dojo;
 import dev.deluxeg4.antiwinter.utils.ProbeResponseUtil;
 import dev.deluxeg4.antiwinter.utils.ProbeResponseUtil.Evaluation;
 import net.kyori.adventure.text.Component;
@@ -25,19 +25,19 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class NoobButConfident implements Listener {
+public final class NoNameButOnTop implements Listener {
     private static final String CONTROL_KEY = "key.forward";
     private static final long RESPONSE_TIMEOUT_TICKS = 20L;
     private static final long JOIN_DELAY_TICKS = 10L;
     private static final long PACK_STATUS_TIMEOUT_TICKS = 400L;
 
     private final WinterOnTop plugin;
-    private final GrandmaAntiCheat detections;
+    private final Dojo detections;
     private final PackShimService packShim;
     private final Map<User, ProbeScan> scans = new ConcurrentHashMap<>();
     private final Map<User, ActiveProbe> active = new ConcurrentHashMap<>();
 
-    public NoobButConfident(WinterOnTop plugin, GrandmaAntiCheat detections, PackShimService packShim) {
+    public NoNameButOnTop(WinterOnTop plugin, Dojo detections, PackShimService packShim) {
         this.plugin = plugin;
         this.detections = detections;
         this.packShim = packShim;
@@ -94,12 +94,12 @@ public final class NoobButConfident implements Listener {
 
     private void sendNextBatch(User user, ProbeScan scan) {
         if (scans.get(user) != scan) return;
-        List<MooPingDetector> batch = scan.nextBatch();
+        List<Dot> batch = scan.nextBatch();
         if (batch.isEmpty()) {
             if (scan.advancePass()) {
                 sendNextBatch(user, scan);
             } else {
-                for (MooPingDetector probe : KhaoPadClient.DEFAULT) {
+                for (Dot probe : WinterClient67.DEFAULT) {
                     if (scan.confirmedHits().contains(probe.id())) {
                         detections.recordProbe(user, scan.uuid, probe.id(), probe.displayName(), probe.violation());
                     }
@@ -117,7 +117,7 @@ public final class NoobButConfident implements Listener {
         openBatch(player, user, scan, batch);
     }
 
-    private void openBatch(Player player, User user, ProbeScan scan, List<MooPingDetector> batch) {
+    private void openBatch(Player player, User user, ProbeScan scan, List<Dot> batch) {
         if (scans.get(user) != scan || PacketEvents.getAPI().getPlayerManager().getUser(player) != user) return;
         ActiveProbe probe = new ActiveProbe(scan, batch);
         if (active.putIfAbsent(user, probe) != null) return;

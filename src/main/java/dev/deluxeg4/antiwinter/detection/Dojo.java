@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class GrandmaAntiCheat implements Listener {
+public final class Dojo implements Listener {
     private static final int KICK_VL = 2;
     private static final int METEOR_KICK_VL = 1;
     private static final String METEOR_SIGNAL = "probe:meteor";
@@ -48,7 +48,7 @@ public final class GrandmaAntiCheat implements Listener {
     private final ChannelFingerprints channelFingerprints;
     private final Map<User, Set<String>> violations = new ConcurrentHashMap<>();
 
-    public GrandmaAntiCheat(WinterOnTop plugin) {
+    public Dojo(WinterOnTop plugin) {
         this.plugin = plugin;
         this.alerts = new WinterAlerts(plugin);
         this.channelFingerprints = new ChannelFingerprints(plugin);

@@ -3,26 +3,26 @@ package dev.deluxeg4.antiwinter;
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.event.PacketListenerCommon;
 import com.github.retrooper.packetevents.event.PacketListenerPriority;
-import dev.deluxeg4.antiwinter.detection.GrandmaAntiCheat;
-import dev.deluxeg4.antiwinter.packet.PacketMaiRoo;
-import dev.deluxeg4.antiwinter.probe.NoobButConfident;
+import dev.deluxeg4.antiwinter.detection.Dojo;
+import dev.deluxeg4.antiwinter.packet.Phuwanat;
+import dev.deluxeg4.antiwinter.probe.NoNameButOnTop;
 import dev.deluxeg4.antiwinter.probe.PackShimService;
 import dev.deluxeg4.antiwinter.commands.WinterChannelsCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class WinterOnTop extends JavaPlugin {
-    private GrandmaAntiCheat detections;
-    private NoobButConfident probes;
+    private Dojo detections;
+    private NoNameButOnTop probes;
     private PackShimService packShim;
     private PacketListenerCommon packetListener;
 
     @Override
     public void onLoad() {
-        detections = new GrandmaAntiCheat(this);
+        detections = new Dojo(this);
         packShim = new PackShimService(this);
-        probes = new NoobButConfident(this, detections, packShim);
+        probes = new NoNameButOnTop(this, detections, packShim);
         packetListener = PacketEvents.getAPI().getEventManager()
-                .registerListener(new PacketMaiRoo(detections, probes), PacketListenerPriority.NORMAL);
+                .registerListener(new Phuwanat(detections, probes), PacketListenerPriority.NORMAL);
     }
 
     @Override
