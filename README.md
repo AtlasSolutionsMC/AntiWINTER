@@ -1,5 +1,7 @@
 # AntiWINTER
 
+[English](README.md) | [ไทย](README_TH.md)
+
 Paper/Folia 1.21.11 client-signal detection using PacketEvents 2.14.0. Install PacketEvents as a separate server plugin, then put the AntiWINTER jar in `plugins/`.
 
 AntiWINTER is licensed under the MIT License; see [LICENSE](LICENSE).
