@@ -6,12 +6,12 @@ Workflow diagram: [.archify/workflow-antiwinter-20261027-0035/antiwinter-workflo
 
 AntiWINTER checks three client signals:
 
-- The `minecraft:brand` value. Known vanilla, loader, and popular client brands are allowed. Any other non-empty brand is reported to staff and kicked.
+- Every player receives the same probe scan regardless of their `minecraft:brand` value. Known vanilla, loader, and popular client brands are allowed; an unknown non-empty brand adds one review signal and the scan continues.
 - Client plugin channels, including names listed in `minecraft:register`. Channels in the known-client namespace list add 1 VL per namespace.
 - Registered channel-set fingerprints. Capture reference sets from known vanilla, Fabric and OpSec clients with `/winterchannels capture <name> <player>`, then inspect or compare with `/winterchannels show <player>` and `/winterchannels compare <name> <player>`. Baselines live in `plugins/AntiWINTER/channel-fingerprints.yml`; an exact OpSec match is an admin review alert only. Capture each server/client version you want to compare.
 - Translation and keybind probes for Meteor, LiquidBounce, Wurst, Freecam, XRay, ChestESP, KillAura, AutoFish, Lumina, AutoSwitch, BleachHack, Aristois, Coffee, World Downloader, AutoClicker, AntiAFK, Trouser Streak, SeedCrackerX, Simple World Downloader and Glazed. A positive probe is repeated before it counts. Review-only probes cover Ui Utils, Litematica, Item Scroller, Xaero's Minimap and Baritone.
 
-Confirmed signals are sent only to staff with `antiwinter.alert` (operators have it by default). Each distinct signal adds 1 VL; the player is kicked at VL 2. A confirmed Meteor translation probe kicks at VL 1. Unknown non-empty brands are kicked immediately. VL resets on disconnect.
+Confirmed signals are sent only to staff with `antiwinter.alert` (operators have it by default). Each distinct signal adds 1 VL; the player is kicked at VL 2. A confirmed Meteor translation probe kicks at VL 1. An unknown brand by itself does not kick; it can combine with an independent confirmed probe or channel signal. VL resets on disconnect.
 
 An unresolved key or missing response is inconclusive and adds no VL: an ordinary client and a client that blocks probes can look the same. Probe checks start 10 ticks after joining; the temporary sign is hidden after one tick, restored after the response or timeout, and its sign update is cancelled. Players may see a brief sign-editor flicker.
 

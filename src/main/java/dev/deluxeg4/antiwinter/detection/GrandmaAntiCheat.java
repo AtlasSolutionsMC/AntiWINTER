@@ -47,7 +47,6 @@ public final class GrandmaAntiCheat implements Listener {
     private final WinterAlerts alerts;
     private final ChannelFingerprints channelFingerprints;
     private final Map<User, Set<String>> violations = new ConcurrentHashMap<>();
-    private final Set<UUID> unrecognizedBrands = ConcurrentHashMap.newKeySet();
 
     public GrandmaAntiCheat(WinterOnTop plugin) {
         this.plugin = plugin;
@@ -59,13 +58,8 @@ public final class GrandmaAntiCheat implements Listener {
         String normalized = brand.trim().toLowerCase(java.util.Locale.ROOT);
         if (normalized.isEmpty()) return;
         if (!KNOWN_BRANDS.contains(normalized) && !normalized.startsWith("lunarclient:")) {
-            if (!unrecognizedBrands.add(uuid)) return;
             String displayBrand = brand.replaceAll("[\\p{Cntrl}]", "?");
-            plugin.getServer().getGlobalRegionScheduler().execute(plugin, () -> {
-                alerts.send("AntiWINTER: " + playerName(uuid) + " sent unrecognized client brand '" + displayBrand + "' (kicked)");
-                Player player = Bukkit.getPlayer(uuid);
-                if (player != null) kickUnknownBrand(player, user);
-            });
+            recordSignal(user, uuid, "brand:unrecognized", "sent unrecognized client brand '" + displayBrand + "'", KICK_VL);
         }
     }
 
@@ -121,21 +115,8 @@ public final class GrandmaAntiCheat implements Listener {
                     () -> alerts.send("AntiWINTER: " + event.getPlayer().getName()
                             + " channel fingerprint matches the saved OpSec baseline (review only; no VL)"));
         }
-        if (unrecognizedBrands.contains(event.getPlayer().getUniqueId())) {
-            kickUnknownBrand(event.getPlayer(), user);
-            return;
-        }
         Set<String> signals = violations.get(user);
         if (signals != null && signals.size() >= kickThreshold(signals)) kick(event.getPlayer(), user, signals);
-    }
-
-    private void kickUnknownBrand(Player player, User user) {
-        player.getScheduler().execute(plugin, () -> {
-            if (unrecognizedBrands.contains(player.getUniqueId())
-                    && PacketEvents.getAPI().getPlayerManager().getUser(player) == user) {
-                player.kick(Component.text("Blocked: unrecognized client brand."));
-            }
-        }, null, 1L);
     }
 
     private void kick(Player player, User user, Set<String> signals) {
@@ -160,14 +141,12 @@ public final class GrandmaAntiCheat implements Listener {
     public void disconnect(User user) {
         violations.remove(user);
         if (user.getUUID() != null) {
-            unrecognizedBrands.remove(user.getUUID());
             channelFingerprints.disconnect(user.getUUID());
         }
     }
 
     public void clear() {
         violations.clear();
-        unrecognizedBrands.clear();
         channelFingerprints.clear();
     }
 
