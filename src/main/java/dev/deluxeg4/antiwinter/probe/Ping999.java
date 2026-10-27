@@ -1,6 +1,6 @@
 package dev.deluxeg4.antiwinter.probe;
 
-public enum ProbeMode {
+public enum Ping999 {
     METEOR,
     TRANSLATE,
     KEYBIND

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "workflow",
+  "quality": "standard",
+  "specification": {
+    "path": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\candidate.json",
+    "sha256": "33a881e0a32365cdb59c760a57312d0392a06c43f10b2b83948965456674ff35",
+    "bytes": 5562
+  },
+  "artifact": {
+    "path": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.html",
+    "sha256": "d8c28033ce3549874af0b636733b6bff24f13434848e26c29dbcf921edc9da29",
+    "bytes": 848765
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\review-opsec\\antiwinter-workflow.finalize.json",
+    "summaryReceipt": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\review-opsec\\antiwinter-workflow.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\review-opsec\\antiwinter-workflow.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-26T17:39:18.765Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 10893,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  }
+}

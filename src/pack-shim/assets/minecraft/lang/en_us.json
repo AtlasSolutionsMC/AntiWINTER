@@ -1,0 +1,22 @@
+{
+  "antiwinter.probe.canary": "ANTIWINTER_PACK_CANARY_7F31",
+  "key.meteor-client.open-gui": "ANTIWINTER_SHIM_METEOR",
+  "liquidbounce.module.killaura.name": "ANTIWINTER_SHIM_LIQUIDBOUNCE",
+  "emc.module.killaura.name": "ANTIWINTER_SHIM_ARISTOIS",
+  "coffee.module.killaura.name": "ANTIWINTER_SHIM_COFFEE",
+  "key.wdl.startStop": "ANTIWINTER_SHIM_WORLDDOWNLOADER",
+  "autoclicker-fabric.hud.holding": "ANTIWINTER_SHIM_AUTOCLICKER",
+  "key.antiafk.toggle": "ANTIWINTER_SHIM_ANTIAFK",
+  "addon.trouser-streak.name": "ANTIWINTER_SHIM_TROUSERSTREAK",
+  "bleachhack.module.killaura": "ANTIWINTER_SHIM_BLEACHHACK",
+  "cracker.already": "ANTIWINTER_SHIM_SEEDCRACKERX",
+  "swd.screen.config.title": "ANTIWINTER_SHIM_SIMPLEWORLDDOWNLOADER",
+  "module.trouser-streak.NewerNewChunks.description": "ANTIWINTER_SHIM_TROUSERSTREAK_NEWCHUNKS",
+  "module.trouser-streak.AnHero.description": "ANTIWINTER_SHIM_TROUSERSTREAK_ANHERO",
+  "addon.glazed.name": "ANTIWINTER_SHIM_GLAZED",
+  "key.ui-utils.restore_screen": "ANTIWINTER_SHIM_UIUTILS",
+  "litematica.hotkey.name.openmainmenuscreen": "ANTIWINTER_SHIM_LITEMATICA",
+  "itemscroller.hotkey.name.openconfigscreen": "ANTIWINTER_SHIM_ITEMSCROLLER",
+  "gui.xaero_minimap": "ANTIWINTER_SHIM_XAEROS_MINIMAP",
+  "baritone.setting.allowBreak": "ANTIWINTER_SHIM_BARITONE"
+}

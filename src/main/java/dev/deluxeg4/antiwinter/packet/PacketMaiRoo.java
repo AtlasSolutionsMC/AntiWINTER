@@ -7,17 +7,17 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.configuration.client.WrapperConfigClientPluginMessage;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPluginMessage;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientUpdateSign;
-import dev.deluxeg4.antiwinter.detection.DetectionService;
-import dev.deluxeg4.antiwinter.probe.TranslationProbeService;
-
-import java.nio.charset.StandardCharsets;
+import dev.deluxeg4.antiwinter.detection.GrandmaAntiCheat;
+import dev.deluxeg4.antiwinter.probe.NoobButConfident;
+import dev.deluxeg4.antiwinter.utils.BrandReader;
+import dev.deluxeg4.antiwinter.utils.ClientChannelReader;
 import java.util.UUID;
 
-public final class ClientPacketListener implements PacketListener {
-    private final DetectionService detections;
-    private final TranslationProbeService probes;
+public final class PacketMaiRoo implements PacketListener {
+    private final GrandmaAntiCheat detections;
+    private final NoobButConfident probes;
 
-    public ClientPacketListener(DetectionService detections, TranslationProbeService probes) {
+    public PacketMaiRoo(GrandmaAntiCheat detections, NoobButConfident probes) {
         this.detections = detections;
         this.probes = probes;
     }
@@ -50,30 +50,18 @@ public final class ClientPacketListener implements PacketListener {
         }
 
         if (data == null) return;
+        if (ClientChannelReader.isRegister(channel)) {
+            detections.registerChannels(event.getUser(), uuid, ClientChannelReader.readRegistered(data));
+            return;
+        }
+        if (ClientChannelReader.isUnregister(channel)) {
+            detections.unregisterChannels(uuid, ClientChannelReader.readRegistered(data));
+            return;
+        }
         if ("minecraft:brand".equals(channel)) {
-            detections.recordBrand(event.getUser(), uuid, readBrand(data));
-        } else if ("minecraft:register".equals(channel) && data.length <= 4096) {
-            for (String name : new String(data, StandardCharsets.UTF_8).split("\u0000")) {
-                int separator = name.indexOf(':');
-                if (separator > 0) {
-                    detections.recordChannel(event.getUser(), uuid, name.substring(0, separator));
-                }
-            }
+            detections.recordBrand(event.getUser(), uuid, BrandReader.read(data));
         }
-    }
-
-    private static String readBrand(byte[] data) {
-        int length = 0;
-        int offset = 0;
-        for (int shift = 0; shift < 35 && offset < data.length; shift += 7) {
-            int next = data[offset++] & 0xff;
-            length |= (next & 0x7f) << shift;
-            if ((next & 0x80) == 0) {
-                if (length < 0 || length > 256 || length != data.length - offset) return "";
-                return new String(data, offset, length, StandardCharsets.UTF_8);
-            }
-        }
-        return "";
+        detections.recordChannel(event.getUser(), uuid, channel);
     }
 
     @Override

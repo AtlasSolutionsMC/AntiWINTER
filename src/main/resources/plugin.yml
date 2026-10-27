@@ -1,12 +1,19 @@
 name: AntiWINTER
 version: '${version}'
 
-main: dev.deluxeg4.antiwinter.AntiWinterPlugin
+main: dev.deluxeg4.antiwinter.WinterOnTop
 api-version: '1.21.11'
 load: POSTWORLD
 folia-supported: true
 depend: [packetevents]
+commands:
+  winterchannels:
+    description: Capture and compare client channel fingerprints
+    usage: /winterchannels <list|show|capture|compare>
 permissions:
   antiwinter.alert:
     description: Receive client signal alerts
+    default: op
+  antiwinter.admin:
+    description: Manage AntiWINTER fingerprints
     default: op

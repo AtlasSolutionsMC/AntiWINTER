@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
-  "ok": true,
+  "ok": false,
   "command": "finalize",
-  "status": "pass",
+  "status": "fail",
   "type": "workflow",
   "quality": "standard",
-  "startedAt": "2026-10-26T17:41:52.444Z",
+  "startedAt": "2026-10-27T09:37:44.548Z",
   "specification": {
     "path": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\candidate.json",
-    "sha256": "bc7a9904e873ab59804188c65a37fbbce7e572bbc31ebac848ef3dc8ee95a521",
-    "bytes": 5726
+    "sha256": "33a881e0a32365cdb59c760a57312d0392a06c43f10b2b83948965456674ff35",
+    "bytes": 5562
   },
   "artifact": {
     "path": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.html",
-    "sha256": "a1d02a79761a5a78b002339d69c1199faf30266a3fbc03f59e0dc1bd9b671a2a",
-    "bytes": 849572
+    "sha256": "d8c28033ce3549874af0b636733b6bff24f13434848e26c29dbcf921edc9da29",
+    "bytes": 848765
   },
   "stages": {
     "validate": {
@@ -38,8 +38,8 @@
         "ok": true,
         "command": "validate",
         "specification": {
-          "sha256": "bc7a9904e873ab59804188c65a37fbbce7e572bbc31ebac848ef3dc8ee95a521",
-          "bytes": 5726
+          "sha256": "33a881e0a32365cdb59c760a57312d0392a06c43f10b2b83948965456674ff35",
+          "bytes": 5562
         },
         "validation": {
           "checksPassed": 9,
@@ -80,7 +80,7 @@
     "deliver": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 904,
+      "durationMs": 3453,
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\G\\AppData\\Local\\Temp\\archify-tool-20261027-0035\\archify\\bin\\archify.mjs",
@@ -94,19 +94,19 @@
       ],
       "receipt": {
         "schemaVersion": 1,
-        "receiptId": "fda4348e-b988-432c-ab42-ec0512c17a37",
+        "receiptId": "8a6c4b51-16c4-4ac4-b375-6dc14a73d658",
         "ok": true,
         "command": "deliver",
         "type": "workflow",
         "input": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\candidate.json",
         "output": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.html",
         "specification": {
-          "sha256": "bc7a9904e873ab59804188c65a37fbbce7e572bbc31ebac848ef3dc8ee95a521",
-          "bytes": 5726
+          "sha256": "33a881e0a32365cdb59c760a57312d0392a06c43f10b2b83948965456674ff35",
+          "bytes": 5562
         },
         "artifact": {
-          "sha256": "a1d02a79761a5a78b002339d69c1199faf30266a3fbc03f59e0dc1bd9b671a2a",
-          "bytes": 849572
+          "sha256": "d8c28033ce3549874af0b636733b6bff24f13434848e26c29dbcf921edc9da29",
+          "bytes": 848765
         },
         "validation": {
           "checksPassed": 9,
@@ -158,7 +158,7 @@
     "check": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 283,
+      "durationMs": 588,
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\G\\AppData\\Local\\Temp\\archify-tool-20261027-0035\\archify\\bin\\archify.mjs",
@@ -170,8 +170,8 @@
         "ok": true,
         "file": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.html",
         "artifact": {
-          "sha256": "a1d02a79761a5a78b002339d69c1199faf30266a3fbc03f59e0dc1bd9b671a2a",
-          "bytes": 849572
+          "sha256": "d8c28033ce3549874af0b636733b6bff24f13434848e26c29dbcf921edc9da29",
+          "bytes": 848765
         },
         "checks": [
           {
@@ -283,7 +283,7 @@
             },
             "minimumSourceTextPx": 6,
             "minimumProjectedTextPx": 5.406976744186046,
-            "semanticTextCount": 33
+            "semanticTextCount": 32
           },
           "issues": [
             {
@@ -313,13 +313,13 @@
           ]
         },
         "provenance": "current",
-        "deliveryReceiptId": "fda4348e-b988-432c-ab42-ec0512c17a37"
+        "deliveryReceiptId": "8a6c4b51-16c4-4ac4-b375-6dc14a73d658"
       }
     },
     "browser-check": {
-      "status": "pass",
-      "exitCode": 0,
-      "durationMs": 4933,
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 434,
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\G\\AppData\\Local\\Temp\\archify-tool-20261027-0035\\archify\\bin\\archify.mjs",
@@ -331,1470 +331,62 @@
       "execution": "in-process",
       "receipt": {
         "schemaVersion": 1,
-        "ok": true,
+        "ok": false,
         "command": "browser-check",
         "evidenceKind": "automated-browser",
-        "status": "pass",
+        "status": "fail",
         "visualReview": "not-requested",
         "provenance": "current",
-        "deliveryReceiptId": "fda4348e-b988-432c-ab42-ec0512c17a37",
+        "deliveryReceiptId": "8a6c4b51-16c4-4ac4-b375-6dc14a73d658",
         "artifact": {
           "path": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.html",
-          "sha256": "a1d02a79761a5a78b002339d69c1199faf30266a3fbc03f59e0dc1bd9b671a2a",
-          "bytes": 849572
+          "sha256": "d8c28033ce3549874af0b636733b6bff24f13434848e26c29dbcf921edc9da29",
+          "bytes": 848765
         },
         "state": {
           "detail": "read",
           "motion": "still"
         },
         "chrome": {
-          "status": "available",
-          "executable": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+          "status": "not-checked",
+          "executable": null
         },
-        "diagnostics": [],
+        "diagnostics": [
+          {
+            "code": "viewer/evidence-path-conflict",
+            "severity": "error",
+            "message": "browser-check will not replace the existing unowned evidence path \"C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.browser-check.json\".",
+            "subject": {
+              "artifact": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.html",
+              "evidencePath": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.browser-check.json"
+            },
+            "evidence": {
+              "reason": {
+                "code": "ownership-artifact-mismatch"
+              }
+            },
+            "supportedFixes": [
+              "move the conflicting file aside, or choose a separate --out-dir, then rerun browser-check"
+            ]
+          }
+        ],
         "containment": {
-          "status": "pass",
+          "status": "fail",
           "policy": "fit-or-reader-declared-readable-vertical-scroll",
-          "viewports": [
-            {
-              "width": 1440,
-              "height": 900,
-              "theme": "light",
-              "innerWidth": 1440,
-              "innerHeight": 900,
-              "scrollWidth": 1440,
-              "scrollHeight": 1155,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1376,
-              "diagramWidth": 1346,
-              "pageComposition": {
-                "bodyPaddingPx": 12,
-                "headerPx": 52,
-                "diagramChromePx": 78,
-                "svgPx": 1012,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 136,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 1600,
-              "height": 1000,
-              "theme": "light",
-              "innerWidth": 1600,
-              "innerHeight": 1000,
-              "scrollWidth": 1600,
-              "scrollHeight": 1341,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1536,
-              "diagramWidth": 1506,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 60,
-                "diagramChromePx": 84,
-                "svgPx": 1132,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 152,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 1920,
-              "height": 1080,
-              "theme": "light",
-              "innerWidth": 1920,
-              "innerHeight": 1080,
-              "scrollWidth": 1920,
-              "scrollHeight": 1373,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1856,
-              "diagramWidth": 1548,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 60,
-                "diagramChromePx": 84,
-                "svgPx": 1164,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 156,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 2048,
-              "height": 1320,
-              "theme": "light",
-              "innerWidth": 2048,
-              "innerHeight": 1320,
-              "scrollWidth": 2048,
-              "scrollHeight": 1391,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1920,
-              "diagramWidth": 1548,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 68,
-                "diagramChromePx": 94,
-                "svgPx": 1164,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 156,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 44,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            }
-          ]
+          "viewports": []
         },
         "themeStates": {
-          "status": "pass",
-          "viewports": [
-            {
-              "width": 1440,
-              "height": 900,
-              "requestedTheme": "light",
-              "resolvedTheme": "light",
-              "ok": true
-            },
-            {
-              "width": 1600,
-              "height": 1000,
-              "requestedTheme": "light",
-              "resolvedTheme": "light",
-              "ok": true
-            },
-            {
-              "width": 1920,
-              "height": 1080,
-              "requestedTheme": "light",
-              "resolvedTheme": "light",
-              "ok": true
-            },
-            {
-              "width": 2048,
-              "height": 1320,
-              "requestedTheme": "light",
-              "resolvedTheme": "light",
-              "ok": true
-            },
-            {
-              "width": 1440,
-              "height": 900,
-              "requestedTheme": "dark",
-              "resolvedTheme": "dark",
-              "ok": true
-            },
-            {
-              "width": 2048,
-              "height": 1320,
-              "requestedTheme": "dark",
-              "resolvedTheme": "dark",
-              "ok": true
-            }
-          ]
+          "status": "fail",
+          "viewports": []
         },
         "readability": {
-          "status": "pass",
+          "status": "fail",
           "minimumProjectedNodeTextPx": 6,
-          "viewports": [
-            {
-              "width": 1440,
-              "height": 900,
-              "theme": "light",
-              "innerWidth": 1440,
-              "innerHeight": 900,
-              "scrollWidth": 1440,
-              "scrollHeight": 1155,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1376,
-              "diagramWidth": 1346,
-              "pageComposition": {
-                "bodyPaddingPx": 12,
-                "headerPx": 52,
-                "diagramChromePx": 78,
-                "svgPx": 1012,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 136,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 1600,
-              "height": 1000,
-              "theme": "light",
-              "innerWidth": 1600,
-              "innerHeight": 1000,
-              "scrollWidth": 1600,
-              "scrollHeight": 1341,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1536,
-              "diagramWidth": 1506,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 60,
-                "diagramChromePx": 84,
-                "svgPx": 1132,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 152,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 1920,
-              "height": 1080,
-              "theme": "light",
-              "innerWidth": 1920,
-              "innerHeight": 1080,
-              "scrollWidth": 1920,
-              "scrollHeight": 1373,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1856,
-              "diagramWidth": 1548,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 60,
-                "diagramChromePx": 84,
-                "svgPx": 1164,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 156,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 2048,
-              "height": 1320,
-              "theme": "light",
-              "innerWidth": 2048,
-              "innerHeight": 1320,
-              "scrollWidth": 2048,
-              "scrollHeight": 1391,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1920,
-              "diagramWidth": 1548,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 68,
-                "diagramChromePx": 94,
-                "svgPx": 1164,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 156,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 44,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            }
-          ]
+          "viewports": []
         },
         "viewerChrome": {
-          "status": "pass",
-          "viewports": [
-            {
-              "width": 1440,
-              "height": 900,
-              "theme": "light",
-              "innerWidth": 1440,
-              "innerHeight": 900,
-              "scrollWidth": 1440,
-              "scrollHeight": 1155,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1376,
-              "diagramWidth": 1346,
-              "pageComposition": {
-                "bodyPaddingPx": 12,
-                "headerPx": 52,
-                "diagramChromePx": 78,
-                "svgPx": 1012,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 136,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 136,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 68,
-                  "spaceAboveNodesPx": 53,
-                  "spaceBelowNodesPx": 14
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 1600,
-              "height": 1000,
-              "theme": "light",
-              "innerWidth": 1600,
-              "innerHeight": 1000,
-              "scrollWidth": 1600,
-              "scrollHeight": 1341,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1536,
-              "diagramWidth": 1506,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 60,
-                "diagramChromePx": 84,
-                "svgPx": 1132,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 152,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 152,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 76,
-                  "spaceAboveNodesPx": 60,
-                  "spaceBelowNodesPx": 16
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 1920,
-              "height": 1080,
-              "theme": "light",
-              "innerWidth": 1920,
-              "innerHeight": 1080,
-              "scrollWidth": 1920,
-              "scrollHeight": 1373,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1856,
-              "diagramWidth": 1548,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 60,
-                "diagramChromePx": 84,
-                "svgPx": 1164,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 156,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 54,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            },
-            {
-              "width": 2048,
-              "height": 1320,
-              "theme": "light",
-              "innerWidth": 2048,
-              "innerHeight": 1320,
-              "scrollWidth": 2048,
-              "scrollHeight": 1391,
-              "overflowX": false,
-              "overflowY": true,
-              "verticalScrollAccepted": true,
-              "overflowDisposition": "readable-vertical-scroll",
-              "readerLayout": "adaptive",
-              "readerOverflow": "authored",
-              "readerFit": "width-first",
-              "ok": true,
-              "readerWidth": 1920,
-              "diagramWidth": 1548,
-              "pageComposition": {
-                "bodyPaddingPx": 64,
-                "headerPx": 68,
-                "diagramChromePx": 94,
-                "svgPx": 1164,
-                "cardsPx": 0,
-                "viewBoxHeight": 776
-              },
-              "viewBoxWidth": 1032,
-              "workflowLanes": [
-                {
-                  "frameId": "lane-0",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "join",
-                    "client-response",
-                    "kick"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-1",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "wait",
-                    "position",
-                    "probe"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-2",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brands",
-                    "packet-match",
-                    "evaluate"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-3",
-                  "heightPx": 156,
-                  "nodeCount": 3,
-                  "nodeIds": [
-                    "brand-result",
-                    "score",
-                    "threshold"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                },
-                {
-                  "frameId": "lane-4",
-                  "heightPx": 156,
-                  "nodeCount": 1,
-                  "nodeIds": [
-                    "review"
-                  ],
-                  "nodeSpanPx": 78,
-                  "spaceAboveNodesPx": 62,
-                  "spaceBelowNodesPx": 17
-                }
-              ],
-              "minimumProjectedNodeTextPx": 6,
-              "minimumProjectedNonEdgeTextPx": 6,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Player entity scheduler",
-              "minimumProjectedNodeTextDetail": "context",
-              "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "kick"
-              },
-              "minimumRequiredNodeTextPx": 6,
-              "readabilityOk": true,
-              "hasLegend": true,
-              "hasNavigationDock": true,
-              "legendDockIntersectionArea": 0,
-              "dockStageIntersectionArea": 0,
-              "dockStageGap": 10,
-              "requiredDockStageGap": 10,
-              "viewerChromeStageOk": true,
-              "viewerChromeReserve": 44,
-              "viewerChromeActive": true,
-              "viewerChromeOk": true,
-              "resolvedTheme": "light"
-            }
-          ]
+          "status": "fail",
+          "viewports": []
         },
         "captures": {
           "status": "not-requested",
@@ -1804,23 +396,43 @@
         "sidecars": {
           "receipt": "antiwinter-workflow.browser-check.json",
           "files": []
-        }
+        },
+        "error": "browser-check will not replace the existing unowned evidence path \"C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.browser-check.json\"."
       }
     }
   },
   "browserCheck": {
     "requested": true,
-    "ran": true
+    "ran": false
   },
-  "diagnostics": [],
+  "diagnostics": [
+    {
+      "code": "viewer/evidence-path-conflict",
+      "severity": "error",
+      "message": "browser-check will not replace the existing unowned evidence path \"C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.browser-check.json\".",
+      "subject": {
+        "artifact": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.html",
+        "evidencePath": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.browser-check.json"
+      },
+      "evidence": {
+        "reason": {
+          "code": "ownership-artifact-mismatch"
+        }
+      },
+      "supportedFixes": [
+        "move the conflicting file aside, or choose a separate --out-dir, then rerun browser-check"
+      ]
+    }
+  ],
   "evidence": {
     "receipt": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.finalize.json",
     "summaryReceipt": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.finalize-summary.json",
     "browserCheckReceipt": "C:\\Users\\G\\Desktop\\idea\\AntiWINTER\\.archify\\workflow-antiwinter-20261027-0035\\antiwinter-workflow.browser-check.json"
   },
   "visualReview": "not-requested",
-  "finishedAt": "2026-10-26T17:41:59.481Z",
-  "durationMs": 7036,
+  "failedStage": "browser-check",
+  "finishedAt": "2026-10-27T09:37:50.251Z",
+  "durationMs": 5702,
   "update": {
     "status": "current",
     "installedVersion": "3.2.0",

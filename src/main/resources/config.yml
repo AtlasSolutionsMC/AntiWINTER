@@ -1,0 +1,5 @@
+pack-shim:
+  enabled: false
+  url: ""
+  sha1: ""
+  required: true

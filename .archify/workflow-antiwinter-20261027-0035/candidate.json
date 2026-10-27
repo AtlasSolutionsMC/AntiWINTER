@@ -132,8 +132,8 @@
       "lane": "packets",
       "col": 1,
       "type": "messagebus",
-      "label": "Read brand / channels",
-      "sublabel": "minecraft:brand and minecraft:register"
+      "label": "Read client brand",
+      "sublabel": "minecraft:brand for review only"
     },
     {
       "id": "brand-result",
@@ -141,7 +141,7 @@
       "col": 2,
       "type": "security",
       "label": "Classify client signal",
-      "sublabel": "OPSEC adds VL; unknown brand is review-only"
+      "sublabel": "Unknown brand alerts staff; no VL"
     }
   ],
   "edges": [
@@ -216,13 +216,6 @@
       "id": "brand-check",
       "from": "brands",
       "to": "brand-result",
-      "variant": "security"
-    },
-    {
-      "id": "brand-score",
-      "from": "brand-result",
-      "to": "score",
-      "label": "OPSEC",
       "variant": "security"
     },
     {
