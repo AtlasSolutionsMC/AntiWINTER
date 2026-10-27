@@ -2,6 +2,8 @@
 
 Paper/Folia 1.21.11 client-signal detection using PacketEvents 2.14.0. Install PacketEvents as a separate server plugin, then put the AntiWINTER jar in `plugins/`.
 
+AntiWINTER is licensed under the MIT License; see [LICENSE](LICENSE).
+
 AntiWINTER checks three client signals:
 
 - Every player receives the same probe scan regardless of their `minecraft:brand` value. Known vanilla, loader, and popular client brands are allowed; an unknown non-empty brand adds one review signal and the scan continues.
