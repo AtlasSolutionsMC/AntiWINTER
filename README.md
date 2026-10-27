@@ -2,8 +2,6 @@
 
 Paper/Folia 1.21.11 client-signal detection using PacketEvents 2.14.0. Install PacketEvents as a separate server plugin, then put the AntiWINTER jar in `plugins/`.
 
-Workflow diagram: [.archify/workflow-antiwinter-20261027-0035/antiwinter-workflow.html](.archify/workflow-antiwinter-20261027-0035/antiwinter-workflow.html).
-
 AntiWINTER checks three client signals:
 
 - Every player receives the same probe scan regardless of their `minecraft:brand` value. Known vanilla, loader, and popular client brands are allowed; an unknown non-empty brand adds one review signal and the scan continues.
@@ -19,4 +17,35 @@ An experimental forced resource-pack shim can be built with `gradle packShimZip`
 
 These checks identify client signals that are exposed to the server; they do not prove a specific mod is installed. Clients can spoof brands and filter channels, known packs, or translation results. Do not treat a missing signal as proof that a player is vanilla. A server resource pack that defines a probed key can also cause a match, so positive probes must repeat before they count.
 
-Probe identifiers and response modes are adapted from the MIT-licensed [CheckHacks configuration and implementation](https://github.com/branduzzo/CheckHacks); its license is included in the jar at `META-INF/LICENSE-CheckHacks.txt`. Translation-probe behavior follows the [AntiExploitPreventer TranslationChecker](https://github.com/themysterytrend/AntiExploitPreventer/blob/master/src/main/java/me/themysterytrend/antiExploitPreventer/checker/impl/TranslationChecker.java).
+## References
+
+- [CheckHacks](https://github.com/branduzzo/CheckHacks) — probe identifiers and response modes; MIT License.
+- [AntiExploitPreventer TranslationChecker](https://github.com/themysterytrend/AntiExploitPreventer/blob/master/src/main/java/me/themysterytrend/antiExploitPreventer/checker/impl/TranslationChecker.java) — translation probe behavior reference.
+- [ModFingerprint](https://github.com/NorkelL/TexturepackAnticheat-fabric) — experimental registered-channel fingerprints and resource-pack shim concept.
+- [OpSec](https://github.com/aurickk/OpSec/) — client channel filtering behavior used as a reference for the OpSec baseline.
+
+CheckHacks license notice:
+
+```text
+MIT License
+
+Copyright (c) 2026 Branduzzo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
