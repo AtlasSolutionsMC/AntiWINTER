@@ -1,6 +1,6 @@
 package dev.deluxeg4.antiwinter.probe;
 
-import dev.deluxeg4.antiwinter.WinterOnTop;
+import dev.deluxeg4.antiwinter.AntiWinterPlugin;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
@@ -16,12 +16,12 @@ public final class PackShimService {
     public static final String CANARY_KEY = "antiwinter.probe.canary";
     public static final String CANARY_VALUE = "ANTIWINTER_PACK_CANARY_7F31";
 
-    private final WinterOnTop plugin;
+    private final AntiWinterPlugin plugin;
     private final Set<UUID> requested = ConcurrentHashMap.newKeySet();
     private final Map<UUID, PlayerResourcePackStatusEvent.Status> statuses = new ConcurrentHashMap<>();
     private final AtomicBoolean warned = new AtomicBoolean();
 
-    public PackShimService(WinterOnTop plugin) {
+    public PackShimService(AntiWinterPlugin plugin) {
         this.plugin = plugin;
     }
 

@@ -1,14 +1,14 @@
 package dev.deluxeg4.antiwinter.utils;
 
-import dev.deluxeg4.antiwinter.WinterOnTop;
+import dev.deluxeg4.antiwinter.AntiWinterPlugin;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public final class WinterAlerts {
-    private final WinterOnTop plugin;
+    private final AntiWinterPlugin plugin;
 
-    public WinterAlerts(WinterOnTop plugin) {
+    public WinterAlerts(AntiWinterPlugin plugin) {
         this.plugin = plugin;
     }
 

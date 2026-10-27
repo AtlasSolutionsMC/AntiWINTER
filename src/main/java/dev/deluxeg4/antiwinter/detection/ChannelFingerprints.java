@@ -1,6 +1,6 @@
 package dev.deluxeg4.antiwinter.detection;
 
-import dev.deluxeg4.antiwinter.WinterOnTop;
+import dev.deluxeg4.antiwinter.AntiWinterPlugin;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -21,7 +21,7 @@ public final class ChannelFingerprints {
     private final Map<UUID, Set<String>> current = new ConcurrentHashMap<>();
     private final Map<String, Set<String>> baselines = new ConcurrentHashMap<>();
 
-    public ChannelFingerprints(WinterOnTop plugin) {
+    public ChannelFingerprints(AntiWinterPlugin plugin) {
         this.file = new File(plugin.getDataFolder(), "channel-fingerprints.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         ConfigurationSection section = config.getConfigurationSection("fingerprints");

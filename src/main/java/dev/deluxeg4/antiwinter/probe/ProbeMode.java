@@ -1,6 +1,6 @@
 package dev.deluxeg4.antiwinter.probe;
 
-public enum AEFft {
+public enum ProbeMode {
     METEOR,
     TRANSLATE,
     KEYBIND

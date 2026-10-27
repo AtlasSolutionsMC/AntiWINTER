@@ -2,7 +2,7 @@ package dev.deluxeg4.antiwinter.detection;
 
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.protocol.player.User;
-import dev.deluxeg4.antiwinter.WinterOnTop;
+import dev.deluxeg4.antiwinter.AntiWinterPlugin;
 import dev.deluxeg4.antiwinter.utils.WinterAlerts;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -16,7 +16,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class Dojo implements Listener {
+public final class DetectionService implements Listener {
     private static final int KICK_VL = 2;
     private static final int METEOR_KICK_VL = 1;
     private static final String METEOR_SIGNAL = "probe:meteor";
@@ -43,12 +43,12 @@ public final class Dojo implements Listener {
             Map.entry("opsec", "OpSec")
     );
 
-    private final WinterOnTop plugin;
+    private final AntiWinterPlugin plugin;
     private final WinterAlerts alerts;
     private final ChannelFingerprints channelFingerprints;
     private final Map<User, Set<String>> violations = new ConcurrentHashMap<>();
 
-    public Dojo(WinterOnTop plugin) {
+    public DetectionService(AntiWinterPlugin plugin) {
         this.plugin = plugin;
         this.alerts = new WinterAlerts(plugin);
         this.channelFingerprints = new ChannelFingerprints(plugin);

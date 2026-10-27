@@ -7,17 +7,17 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.configuration.client.WrapperConfigClientPluginMessage;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientPluginMessage;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientUpdateSign;
-import dev.deluxeg4.antiwinter.detection.Dojo;
-import dev.deluxeg4.antiwinter.probe.NoNameButOnTop;
+import dev.deluxeg4.antiwinter.detection.DetectionService;
+import dev.deluxeg4.antiwinter.probe.ClientProbeService;
 import dev.deluxeg4.antiwinter.utils.BrandReader;
 import dev.deluxeg4.antiwinter.utils.ClientChannelReader;
 import java.util.UUID;
 
-public final class Phuwanat implements PacketListener {
-    private final Dojo detections;
-    private final NoNameButOnTop probes;
+public final class ClientPacketListener implements PacketListener {
+    private final DetectionService detections;
+    private final ClientProbeService probes;
 
-    public Phuwanat(Dojo detections, NoNameButOnTop probes) {
+    public ClientPacketListener(DetectionService detections, ClientProbeService probes) {
         this.detections = detections;
         this.probes = probes;
     }

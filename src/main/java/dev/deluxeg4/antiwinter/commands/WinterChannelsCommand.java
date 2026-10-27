@@ -1,7 +1,7 @@
 package dev.deluxeg4.antiwinter.commands;
 
 import dev.deluxeg4.antiwinter.detection.ChannelFingerprints;
-import dev.deluxeg4.antiwinter.detection.Dojo;
+import dev.deluxeg4.antiwinter.detection.DetectionService;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -16,7 +16,7 @@ import java.util.TreeSet;
 public final class WinterChannelsCommand implements CommandExecutor {
     private final ChannelFingerprints fingerprints;
 
-    public WinterChannelsCommand(Dojo detections) {
+    public WinterChannelsCommand(DetectionService detections) {
         this.fingerprints = detections.channelFingerprints();
     }
 
