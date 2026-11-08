@@ -12,6 +12,7 @@ import dev.deluxeg4.antiwinter.probe.ClientProbeService;
 import dev.deluxeg4.antiwinter.utils.BrandReader;
 import dev.deluxeg4.antiwinter.utils.ClientChannelReader;
 import java.util.UUID;
+import com.github.retrooper.packetevents.wrapper.configuration.client.WrapperConfigClientSelectKnownPacks;
 
 public final class ClientPacketListener implements PacketListener {
     private final DetectionService detections;
@@ -26,6 +27,12 @@ public final class ClientPacketListener implements PacketListener {
     public void onPacketReceive(PacketReceiveEvent event) {
         UUID uuid = event.getUser().getUUID();
         if (uuid == null) return;
+
+        if (event.getPacketType() == PacketType.Configuration.Client.SELECT_KNOWN_PACKS) {
+            var packet = new WrapperConfigClientSelectKnownPacks(event);
+            detections.recordKnownPacks(event.getUser(), uuid, packet.getKnownPacks());
+            return;
+        }
 
         if (event.getPacketType() == PacketType.Play.Client.UPDATE_SIGN) {
             WrapperPlayClientUpdateSign update = new WrapperPlayClientUpdateSign(event);

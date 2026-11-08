@@ -57,3 +57,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## ตรวจสอบ Known Packs
+
+เก็บคำตอบ `SELECT_KNOWN_PACKS` ในช่วง configuration โดยใช้ permission `antiwinter.admin`:
+
+```text
+/winterpacks show <player>
+/winterpacks capture <name> <player>
+/winterpacks compare <name> <player>
+/winterpacks list
+```
+
+บันทึก baseline ที่ `plugins/AntiWINTER/known-pack-fingerprints.yml` ชื่อใช้ a-z, 0-9, `_`, `-` ยาว 1–32 ตัว ข้อมูลแสดงเป็น `namespace:id@version` โดย URL-encode แต่ละส่วนและรักษาตัวพิมพ์ของ version เปรียบเทียบโดยไม่สนลำดับและรายการซ้ำ แยกกรณียังไม่ได้รับคำตอบออกจากคำตอบว่าง หากเปิดปลั๊กอินหลังผู้เล่นเข้าแล้วให้เข้าใหม่เพื่อเก็บข้อมูล
+
+ตรวจ Known Packs อัตโนมัติกับรายการ client/mod ที่บล็อกอยู่แล้ว (รวม OpSec) หาก namespace, pack ID แบบตรงตัว หรือ namespace ภายใน pack ID ตรงรายการ จะเตะที่ VL 1 โดยไม่ต้องมี baseline ถ้าพบช่วง configuration จะเตะเมื่อเข้าเกม คำสั่งยังใช้ดูข้อมูลเพิ่มเติมได้ ส่วน pack ที่ไม่รู้จักไม่เข้าเงื่อนไขนี้ รายการนี้เป็นผลการเจรจา known packs ไม่ใช่รายชื่อ mod ทั้งหมด ควรเทียบภายใต้การตั้งค่า server เดียวกัน เพราะรายการที่ server เสนอ เวอร์ชัน client และการกรองข้อมูลทำให้ผลต่างกันได้ ระบบไม่ส่ง probe เพิ่มหรือแก้การเจรจา registry
+
+## โหมดบังคับตรวจยืนยัน client
+
+`probe.kick-on-verification-failure` ค่าเริ่มต้น false หากเปิด จะเตะเมื่อการตรวจ sign ล้มเหลวสองครั้ง (canary ไม่ตรง หรือไม่ตอบภายใน 60 ticks ต่อครั้ง) ด้วยเหตุผล `client verification failed` เป็นเงื่อนไขการเข้าเซิร์ฟเวอร์ ไม่ใช่หลักฐานว่ามี hack ชนิดใด `probe.debug` เปิด log คำตอบ sign และ Known Packs เพื่อวิเคราะห์ รอ 40 ticks หลังโหลด pack ก่อนเริ่ม และบันทึกทั้งเริ่ม/จบ scan
+
+เมื่อ canary ของ pack ผ่าน และ key คำแปลที่ pack มีให้ตอบ fallback ซ้ำทั้งสองรอบ จะเตะทันทีด้วยเหตุผล repeated client probe filtering รวมถึง key ของ mod ที่ปกติแจ้งเพื่อพิจารณาเท่านั้น สัญญาณนี้คือการกรอง ไม่ใช่หลักฐานว่าติดตั้ง mod ตามชื่อ ค่า shim ปกติและคำตอบ keybind ไม่เข้าเงื่อนไขนี้

@@ -53,3 +53,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+
+## Known Packs inspection
+
+AntiWINTER passively records `SELECT_KNOWN_PACKS` responses during configuration. With `antiwinter.admin`:
+
+```text
+/winterpacks show <player>
+/winterpacks capture <name> <player>
+/winterpacks compare <name> <player>
+/winterpacks list
+```
+
+Baselines persist in `plugins/AntiWINTER/known-pack-fingerprints.yml`. Names accept letters, digits, underscores and hyphens (1–32 characters). Entries use `namespace:id@version`, with URL-encoded fields and case-sensitive versions. Comparison ignores order and duplicates. An unobserved response is not an empty response; reconnect after enabling the plugin to collect it.
+
+Known Packs are checked automatically against the existing blocked client/mod identifiers (including OpSec). A matching namespace, exact pack ID, or namespace within a namespaced pack ID causes a kick at VL 1, without a saved baseline. Configuration-phase detections are enforced on join. The commands remain optional diagnostics. Unknown packs do not trigger this rule. Responses reflect known-pack negotiation, not a complete mod list. Different server offers, client versions, or filtering can change results; compare clients under the same server setup. No extra probes are sent and registry negotiation is not modified.
+
+## Strict client verification
+
+`probe.kick-on-verification-failure` defaults to false. When enabled, two failed sign verification attempts (missing pack canary or no response within 60 ticks) disconnect the player with `client verification failed`. This is an admission policy, not evidence of a particular hack client. `probe.debug` logs bounded sign responses and observed Known Packs for troubleshooting. Loaded packs wait 40 ticks before probing; scan start and completion are logged.
+
+Verified pack canary plus the same pack-provided translation fallback in both probe passes now triggers an immediate kick for repeated client probe filtering. This also applies to review-only mod keys: the signal is filtering, not proof that the named mod is installed. Normal shim values and keybind responses do not trigger this rule.

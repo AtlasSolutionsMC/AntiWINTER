@@ -36,8 +36,10 @@ public final class ProbeResponseUtil {
         String lowerResponse = response.toLowerCase(java.util.Locale.ROOT);
         String lowerKey = probe.key().toLowerCase(java.util.Locale.ROOT);
         if (packShimVerified && probe.mode() != dev.deluxeg4.antiwinter.probe.ProbeMode.KEYBIND) {
-            if (lowerResponse.equals(probe.shim().toLowerCase(java.util.Locale.ROOT))
-                    || lowerResponse.startsWith(probe.fallback().toLowerCase(java.util.Locale.ROOT))) return Evaluation.NONE;
+            if (lowerResponse.equals(probe.shim().toLowerCase(java.util.Locale.ROOT))) return Evaluation.NONE;
+            if (lowerResponse.startsWith(probe.fallback().toLowerCase(java.util.Locale.ROOT))) {
+                return Evaluation.FILTERED;
+            }
             if (lowerResponse.equals(lowerKey)) return Evaluation.PROTECTED;
             return Evaluation.DETECTED;
         }
@@ -59,9 +61,10 @@ public final class ProbeResponseUtil {
         };
     }
 
-    public record Evaluation(boolean detected, boolean protectedResult) {
-        private static final Evaluation NONE = new Evaluation(false, false);
-        private static final Evaluation DETECTED = new Evaluation(true, false);
-        private static final Evaluation PROTECTED = new Evaluation(false, true);
+    public record Evaluation(boolean detected, boolean protectedResult, boolean filtered) {
+        private static final Evaluation FILTERED = new Evaluation(false, false, true);
+        private static final Evaluation NONE = new Evaluation(false, false, false);
+        private static final Evaluation DETECTED = new Evaluation(true, false, false);
+        private static final Evaluation PROTECTED = new Evaluation(false, true, false);
     }
 }

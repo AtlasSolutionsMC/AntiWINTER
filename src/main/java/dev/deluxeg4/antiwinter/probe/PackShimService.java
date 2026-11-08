@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public final class PackShimService {
     public static final UUID PACK_ID = UUID.fromString("310e7568-ffce-4edf-9d4a-bfd69cc2f67a");
     public static final String CANARY_KEY = "antiwinter.probe.canary";
-    public static final String CANARY_VALUE = "ANTIWINTER_PACK_CANARY_7F31";
+    public static final String CANARY_VALUE = "AW7F31";
 
     private final AntiWinterPlugin plugin;
     private final Set<UUID> requested = ConcurrentHashMap.newKeySet();
@@ -39,6 +39,7 @@ public final class PackShimService {
 
     public void request(Player player) {
         requested.add(player.getUniqueId());
+        plugin.getLogger().info("Pack shim requested for " + player.getName());
         String url = plugin.getConfig().getString("pack-shim.url", "").trim();
         String sha1 = plugin.getConfig().getString("pack-shim.sha1", "").trim();
         boolean required = plugin.getConfig().getBoolean("pack-shim.required", true);
@@ -53,6 +54,7 @@ public final class PackShimService {
 
     public void status(PlayerResourcePackStatusEvent event) {
         statuses.put(event.getPlayer().getUniqueId(), event.getStatus());
+        plugin.getLogger().info("Pack shim status for " + event.getPlayer().getName() + ": " + event.getStatus());
     }
 
     public boolean resolved(UUID uuid) {

@@ -2,6 +2,9 @@ package dev.deluxeg4.antiwinter.detection;
 
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.protocol.player.User;
+import com.github.retrooper.packetevents.util.KnownPack;
+import java.util.List;
+import java.util.Locale;
 import dev.deluxeg4.antiwinter.AntiWinterPlugin;
 import dev.deluxeg4.antiwinter.utils.WinterAlerts;
 import net.kyori.adventure.text.Component;
@@ -46,12 +49,14 @@ public final class DetectionService implements Listener {
     private final AntiWinterPlugin plugin;
     private final WinterAlerts alerts;
     private final ChannelFingerprints channelFingerprints;
+    private final KnownPackFingerprints knownPackFingerprints;
     private final Map<User, Set<String>> violations = new ConcurrentHashMap<>();
 
     public DetectionService(AntiWinterPlugin plugin) {
         this.plugin = plugin;
         this.alerts = new WinterAlerts(plugin);
         this.channelFingerprints = new ChannelFingerprints(plugin);
+        this.knownPackFingerprints = new KnownPackFingerprints(plugin);
     }
 
     public void recordBrand(User user, UUID uuid, String brand) {
@@ -75,6 +80,33 @@ public final class DetectionService implements Listener {
         }
     }
 
+    public void recordKnownPacks(User user, UUID uuid, List<KnownPack> packs) {
+        knownPackFingerprints.record(user, packs);
+        if (plugin.getConfig().getBoolean("probe.debug")) {
+            plugin.getLogger().info("Known Packs for " + uuid + ": " + knownPackFingerprints.packs(user));
+        }
+        for (KnownPack pack : packs) {
+            String signature = knownPackSignature(pack);
+            if (signature == null) continue;
+            recordSignal(user, uuid, "knownpack:" + signature,
+                    "advertised a " + CLIENT_CHANNELS.get(signature) + " known pack", 1);
+        }
+    }
+
+    // Exact identifiers only: do not classify arbitrary modded packs as cheats.
+    static String knownPackSignature(KnownPack pack) {
+        String namespace = pack.getNamespace().toLowerCase(Locale.ROOT);
+        if (CLIENT_CHANNELS.containsKey(namespace)) return namespace;
+        String id = pack.getId().toLowerCase(Locale.ROOT);
+        if (CLIENT_CHANNELS.containsKey(id)) return id;
+        int separator = id.indexOf(':');
+        if (separator > 0) {
+            String owner = id.substring(0, separator);
+            if (CLIENT_CHANNELS.containsKey(owner)) return owner;
+        }
+        return null;
+    }
+
     public void registerChannels(User user, UUID uuid, java.util.List<String> channels) {
         channelFingerprints.register(uuid, channels);
         for (String channel : channels) recordChannel(user, uuid, channel);
@@ -82,6 +114,10 @@ public final class DetectionService implements Listener {
 
     public void unregisterChannels(UUID uuid, java.util.List<String> channels) {
         channelFingerprints.unregister(uuid, channels);
+    }
+
+    public KnownPackFingerprints knownPackFingerprints() {
+        return knownPackFingerprints;
     }
 
     public ChannelFingerprints channelFingerprints() {
@@ -123,13 +159,17 @@ public final class DetectionService implements Listener {
         player.getScheduler().execute(plugin, () -> {
             if (violations.get(user) == signals
                     && PacketEvents.getAPI().getPlayerManager().getUser(player) == user) {
-                player.kick(Component.text("Blocked: client detection signals (VL " + signals.size()
-                        + "/" + kickThreshold(signals) + ")."));
+                String reason = signals.stream().anyMatch(signal -> signal.startsWith("filter:"))
+                        ? "Blocked: repeated client probe filtering."
+                        : "Blocked: client detection signals (VL " + signals.size()
+                                + "/" + kickThreshold(signals) + ").";
+                player.kick(Component.text(reason));
             }
         }, null, 1L);
     }
 
-    private static int kickThreshold(Set<String> signals) {
+    static int kickThreshold(Set<String> signals) {
+        if (signals.stream().anyMatch(signal -> signal.startsWith("knownpack:") || signal.startsWith("filter:"))) return 1;
         return signals.contains(METEOR_SIGNAL) ? METEOR_KICK_VL : KICK_VL;
     }
 
@@ -140,6 +180,7 @@ public final class DetectionService implements Listener {
 
     public void disconnect(User user) {
         violations.remove(user);
+        knownPackFingerprints.disconnect(user);
         if (user.getUUID() != null) {
             channelFingerprints.disconnect(user.getUUID());
         }
@@ -147,6 +188,7 @@ public final class DetectionService implements Listener {
 
     public void clear() {
         violations.clear();
+        knownPackFingerprints.clear();
         channelFingerprints.clear();
     }
 
@@ -158,6 +200,23 @@ public final class DetectionService implements Listener {
         }
         else plugin.getServer().getGlobalRegionScheduler().execute(plugin,
                 () -> alerts.send("AntiWINTER: " + playerName(uuid) + " " + message + " (review only; no VL)"));
+    }
+
+    public void recordFilteredProbe(User user, UUID uuid, String id, String displayName) {
+        recordSignal(user, uuid, "filter:" + id,
+                "returned fallback for the pack-provided " + displayName
+                        + " key twice with a valid canary (client filtering signal)", 1);
+    }
+
+    public void rejectVerification(User user, UUID uuid, String reason) {
+        recordProtection(user, uuid, reason);
+        Player player = Bukkit.getPlayer(uuid);
+        if (player == null) return;
+        player.getScheduler().execute(plugin, () -> {
+            if (PacketEvents.getAPI().getPlayerManager().getUser(player) == user) {
+                player.kick(Component.text("Blocked: client verification failed. " + reason));
+            }
+        }, null, 1L);
     }
 
     public void recordProtection(User user, UUID uuid, String reason) {

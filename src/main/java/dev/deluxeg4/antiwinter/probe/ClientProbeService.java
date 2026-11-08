@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class ClientProbeService implements Listener {
     private static final String CONTROL_KEY = "key.forward";
-    private static final long RESPONSE_TIMEOUT_TICKS = 20L;
+    private static final long RESPONSE_TIMEOUT_TICKS = 60L;
     private static final long JOIN_DELAY_TICKS = 10L;
     private static final long PACK_STATUS_TIMEOUT_TICKS = 400L;
 
@@ -78,7 +78,7 @@ public final class ClientProbeService implements Listener {
                     "pack-shim resource pack was not loaded: " + event.getStatus());
         }
         player.getScheduler().runDelayed(plugin, task -> start(player, loaded), null,
-                loaded ? JOIN_DELAY_TICKS : 1L);
+                loaded ? 40L : 1L);
     }
 
     private void start(Player player, boolean packShimEnabled) {
@@ -86,7 +86,11 @@ public final class ClientProbeService implements Listener {
         if (user == null || scans.containsKey(user)) return;
 
         Location location = player.getLocation().getBlock().getLocation().add(0, 2, 0);
-        if (location.getBlockY() >= location.getWorld().getMaxHeight() || !location.getBlock().isEmpty()) return;
+        // A client-only sign does not need an empty real block; restore the real block afterward.
+        if (location.getBlockY() >= location.getWorld().getMaxHeight()) {
+            location.setY(location.getWorld().getMaxHeight() - 1);
+        }
+        plugin.getLogger().info("Probe scan started for " + player.getName() + " (pack=" + packShimEnabled + ")");
         Vector3i position = new Vector3i(location.getBlockX(), location.getBlockY(), location.getBlockZ());
         ProbeScan scan = new ProbeScan(player.getUniqueId(), location.clone(), position, packShimEnabled);
         if (scans.putIfAbsent(user, scan) == null) sendNextBatch(user, scan);
@@ -100,10 +104,14 @@ public final class ClientProbeService implements Listener {
                 sendNextBatch(user, scan);
             } else {
                 for (ProbeDefinition probe : ProbeCatalog.DEFAULT) {
+                    if (scan.confirmedHits().contains("filter:" + probe.id())) {
+                        detections.recordFilteredProbe(user, scan.uuid, probe.id(), probe.displayName());
+                    }
                     if (scan.confirmedHits().contains(probe.id())) {
                         detections.recordProbe(user, scan.uuid, probe.id(), probe.displayName(), probe.violation());
                     }
                 }
+                plugin.getLogger().info("Probe scan completed for " + scan.uuid + ": confirmed=" + scan.confirmedHits());
                 finish(user, scan);
             }
             return;
@@ -135,7 +143,9 @@ public final class ClientProbeService implements Listener {
                 new WrapperPlayServerOpenSignEditor(scan.position, true));
 
         player.getScheduler().runDelayed(plugin,
-                task -> player.sendBlockChange(scan.location, Material.AIR.createBlockData()), null, 1L);
+                task -> {
+                    if (active.get(user) == probe) player.sendBlockChange(scan.location, Material.AIR.createBlockData());
+                }, null, 3L);
         plugin.getServer().getGlobalRegionScheduler().runDelayed(plugin,
                 task -> timeout(user, probe), RESPONSE_TIMEOUT_TICKS);
     }
@@ -147,12 +157,17 @@ public final class ClientProbeService implements Listener {
         String[] plainLines = new String[lines == null ? 0 : lines.length];
         for (int i = 0; i < plainLines.length; i++) plainLines[i] = ProbeResponseUtil.plain(lines[i]);
         String canary = plainLines.length > 3 ? plainLines[3].strip() : "";
+        if (plugin.getConfig().getBoolean("probe.debug")) {
+            String detail = java.util.Arrays.toString(plainLines).replaceAll("[\\p{Cntrl}]", "?");
+            plugin.getLogger().info("Probe response " + uuid + " keys="
+                    + probe.definitions().stream().map(ProbeDefinition::id).toList()
+                    + " lines=" + detail.substring(0, Math.min(detail.length(), 1024)));
+        }
         boolean packShimVerified = probe.scan().packShim
                 && canary.equalsIgnoreCase(PackShimService.CANARY_VALUE);
         boolean exploitProtection = !probe.scan().packShim && canary.equalsIgnoreCase(CONTROL_KEY);
-        if (probe.scan().packShim && !packShimVerified && probe.scan().markProtectionReported()) {
-            detections.recordProtection(user, uuid, "pack-shim canary did not resolve; probe result is inconclusive");
-            finish(user, probe.scan());
+        if (probe.scan().packShim && !packShimVerified) {
+            verificationFailed(user, probe, "pack-shim canary did not resolve");
             return true;
         }
         if (exploitProtection && probe.scan().markProtectionReported()) {
@@ -163,6 +178,7 @@ public final class ClientProbeService implements Listener {
             String response = i < plainLines.length ? plainLines[i].strip() : "";
             Evaluation result = ProbeResponseUtil.evaluate(probe.definitions().get(i), response, exploitProtection, packShimVerified);
             if (result.detected()) probe.scan().recordHit(probe.definitions().get(i).id());
+            if (result.filtered()) probe.scan().recordHit("filter:" + probe.definitions().get(i).id());
             if (result.protectedResult() && probe.scan().markProtectionReported()) {
                 detections.recordProtection(user, uuid, "a translation probe was blocked or unresolved");
             }
@@ -174,10 +190,26 @@ public final class ClientProbeService implements Listener {
 
     private void timeout(User user, ActiveProbe probe) {
         if (!active.remove(user, probe)) return;
-        if (probe.scan().markProtectionReported()) {
-            detections.recordProtection(user, probe.scan().uuid, "no sign response; result is inconclusive");
+        verificationFailed(user, probe, "no sign response within 60 ticks");
+    }
+
+    private void verificationFailed(User user, ActiveProbe probe, String reason) {
+        ProbeScan scan = probe.scan();
+        if (scans.get(user) != scan) return;
+        if (scan.retryVerification()) {
+            plugin.getLogger().info("Retrying client verification for " + scan.uuid + ": " + reason);
+            restore(scan, () -> {
+                Player player = Bukkit.getPlayer(scan.uuid);
+                if (player != null) openBatch(player, user, scan, probe.definitions());
+            });
+            return;
         }
-        finish(user, probe.scan());
+        if (plugin.getConfig().getBoolean("probe.kick-on-verification-failure", false)) {
+            detections.rejectVerification(user, scan.uuid, reason + " (repeated)");
+        } else {
+            detections.recordProtection(user, scan.uuid, reason + " (repeated)");
+        }
+        finish(user, scan);
     }
 
     private void finish(User user, ProbeScan scan) {

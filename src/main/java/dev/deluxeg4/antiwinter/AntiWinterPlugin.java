@@ -8,6 +8,7 @@ import dev.deluxeg4.antiwinter.packet.ClientPacketListener;
 import dev.deluxeg4.antiwinter.probe.ClientProbeService;
 import dev.deluxeg4.antiwinter.probe.PackShimService;
 import dev.deluxeg4.antiwinter.commands.WinterChannelsCommand;
+import dev.deluxeg4.antiwinter.commands.WinterPacksCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AntiWinterPlugin extends JavaPlugin {
@@ -31,6 +32,7 @@ public final class AntiWinterPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(detections, this);
         getServer().getPluginManager().registerEvents(probes, this);
         getCommand("winterchannels").setExecutor(new WinterChannelsCommand(detections));
+        getCommand("winterpacks").setExecutor(new WinterPacksCommand(detections));
     }
 
     @Override

@@ -7,6 +7,9 @@ load: POSTWORLD
 folia-supported: true
 depend: [packetevents]
 commands:
+  winterpacks:
+    description: Inspect and compare observed Known Packs
+    usage: /winterpacks <list|show|capture|compare>
   winterchannels:
     description: Capture and compare client channel fingerprints
     usage: /winterchannels <list|show|capture|compare>

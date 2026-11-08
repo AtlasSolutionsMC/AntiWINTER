@@ -1,5 +1,5 @@
 {
-  "antiwinter.probe.canary": "ANTIWINTER_PACK_CANARY_7F31",
+  "antiwinter.probe.canary": "AW7F31",
   "key.meteor-client.open-gui": "ANTIWINTER_SHIM_METEOR",
   "liquidbounce.module.killaura.name": "ANTIWINTER_SHIM_LIQUIDBOUNCE",
   "emc.module.killaura.name": "ANTIWINTER_SHIM_ARISTOIS",

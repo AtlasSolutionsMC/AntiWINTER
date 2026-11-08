@@ -22,6 +22,11 @@ final class ProbeScan {
     int offset;
     int pass;
     private boolean protectionReported;
+    private int verificationFailures;
+
+    synchronized boolean retryVerification() {
+        return ++verificationFailures < 2;
+    }
 
     ProbeScan(UUID uuid, Location location, Vector3i position, boolean packShim) {
         this.uuid = uuid;
@@ -42,7 +47,8 @@ final class ProbeScan {
         if (pass == 0) {
             firstPassHits.addAll(hits);
             if (firstPassHits.isEmpty()) return false;
-            definitions = definitions.stream().filter(probe -> firstPassHits.contains(probe.id())).toList();
+            definitions = definitions.stream().filter(probe -> firstPassHits.contains(probe.id())
+                    || firstPassHits.contains("filter:" + probe.id())).toList();
             hits.clear();
             offset = 0;
             pass = 1;

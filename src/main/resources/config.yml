@@ -3,3 +3,8 @@ pack-shim:
   url: ""
   sha1: ""
   required: true
+
+probe:
+  debug: false
+  # Strict admission policy, not proof of an installed hack client.
+  kick-on-verification-failure: false
